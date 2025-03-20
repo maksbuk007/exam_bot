@@ -1,8 +1,10 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, WebAppInfo
 from telegram.ext import Application, CommandHandler, CallbackContext
+from dotenv import load_dotenv
+import os
 
-# Твой токен бота (замени на свой из @BotFather)
-TOKEN = "7949149318:AAEKc_tnuByPQO8yFiZbj4hW0Xq06h-c51s"
+load_dotenv()
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 # Разрешённые Telegram ID (можно добавить несколько)
 ALLOWED_IDS = [804816309, 1151301056, 1970302855, 6052484872, 6370543849]  # Замени на свои ID
