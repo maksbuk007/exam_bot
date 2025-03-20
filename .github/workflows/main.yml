@@ -1,0 +1,28 @@
+name: Auto Update Bot
+
+on:
+  push:
+    branches:
+      - main  # Автообновление при каждом пуше в main
+
+jobs:
+  update-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Установка Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Установка зависимостей
+        run: |
+          pip install -r requirements.txt
+
+      - name: Перезапуск бота
+        run: |
+          pkill -f bot.py || true  # Остановить, если бот уже запущен
+          nohup python3 bot.py &   # Запустить бота в фоне
