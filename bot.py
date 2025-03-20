@@ -47,7 +47,7 @@ async def send_access(update: Update):
     """Отправляет пользователю доступ к мини-приложению."""
     user_id = update.message.from_user.id
     if user_id in ALLOWED_IDS:
-        keyboard = [[InlineKeyboardButton("🚀 Открыть мини-приложение", web_app=WebAppInfo(url=APP_URL))]]
+        keyboard = [[InlineKeyboardButton("🚀 Открыть сверзсекретный сайт", web_app=WebAppInfo(url=APP_URL))]]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text("✅ Доступ разрешён! Нажми кнопку ниже:", reply_markup=reply_markup)
     else:
