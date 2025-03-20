@@ -5,7 +5,7 @@ from telegram.ext import Application, CommandHandler, CallbackContext
 TOKEN = "7949149318:AAEKc_tnuByPQO8yFiZbj4hW0Xq06h-c51s"
 
 # Разрешённые Telegram ID (можно добавить несколько)
-ALLOWED_IDS = [804816309, 1151301056]  # Замени на свои ID
+ALLOWED_IDS = [804816309, 1151301056, 1970302855, 6052484872, 6370543849]  # Замени на свои ID
 
 # Ссылка на мини-приложение
 APP_URL = "https://mlogin.ct.ws/"
