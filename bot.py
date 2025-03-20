@@ -8,7 +8,7 @@ TOKEN = "7949149318:AAEKc_tnuByPQO8yFiZbj4hW0Xq06h-c51s"
 ALLOWED_IDS = [804816309, 1151301056]  # Замени на свои ID
 
 # Ссылка на мини-приложение
-APP_URL = "https://fiz-i0erem3.gamma.site/"
+APP_URL = "https://mlogin.ct.ws/"
 
 async def start(update: Update, context: CallbackContext) -> None:
     """Команда /start проверяет ID и отправляет доступ или отказ."""
