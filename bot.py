@@ -2,6 +2,9 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, WebAppI
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext, ContextTypes
 from dotenv import load_dotenv
 import os
+import threading
+import http.server
+import socketserver
 
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -23,7 +26,7 @@ async def start(update: Update, context: CallbackContext) -> None:
     if user_id in authorized_users:
         await send_access(update)
     else:
-        await update.message.reply_text("🔑 Введите пароль для доступа:")
+        await update.message.reply_text("\U0001F511 Введите пароль для доступа:")
 
 async def check_password(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -53,6 +56,15 @@ async def send_access(update: Update):
     else:
         await update.message.reply_text("❌ У вас нет доступа к этому боту.")
 
+# Фиктивный HTTP-сервер для обхода ошибки с портом на Render
+PORT = 8080
+
+def run_fake_server():
+    with socketserver.TCPServer(("", PORT), http.server.SimpleHTTPRequestHandler) as httpd:
+        print(f"Serving at port {PORT}")
+        httpd.serve_forever()
+
+
 def main():
     app = Application.builder().token(TOKEN).build()
 
@@ -60,6 +72,7 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, check_password))
 
     print("Бот запущен...")
+    threading.Thread(target=run_fake_server, daemon=True).start()  # Запускаем сервер в отдельном потоке
     app.run_polling()
 
 if __name__ == "__main__":
