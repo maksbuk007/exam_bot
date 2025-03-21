@@ -73,7 +73,7 @@ def main():
 
     print("Бот запущен...")
     threading.Thread(target=run_fake_server, daemon=True).start()  # Запускаем сервер в отдельном потоке
-    app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True
+    app.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
 
 if __name__ == "__main__":
     main()
